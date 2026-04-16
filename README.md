@@ -109,15 +109,122 @@ Responsável por gerenciar o sistema.
 
 ## ▶️ Execução do Sistema
 
-O sistema possui um **menu interativo no terminal**, permitindo:
+O sistema possui um menu interativo no terminal que permite ao usuário realizar operações bancárias de forma simples e sequencial.
 
-1. Cadastrar cliente  
-2. Criar conta corrente  
-3. Criar conta poupança  
-4. Depositar  
-5. Sacar  
-6. Transferir  
-7. Consultar saldo  
+### 🧭 Fluxo Geral de Uso
+
+Ao iniciar o programa, o usuário deve seguir a ordem lógica abaixo para utilizar corretamente o sistema:
+
+---
+
+### 1️⃣ Cadastrar Cliente
+
+Antes de qualquer operação, é necessário cadastrar um cliente.
+
+**Passos:**
+- Selecionar a opção `1`
+- Informar:
+  - Nome
+  - CPF
+
+**Resultado:**
+- Cliente é armazenado no sistema
+
+---
+
+### 2️⃣ Criar Conta Bancária
+
+Após cadastrar o cliente, é possível criar uma conta.
+
+#### 💳 Conta Corrente
+- Selecionar a opção `2`
+- Informar o CPF do cliente já cadastrado
+
+#### 🏦 Conta Poupança
+- Selecionar a opção `3`
+- Informar o CPF do cliente já cadastrado
+
+**Resultado:**
+- Conta criada com número único
+- Associada ao cliente
+
+---
+
+### 3️⃣ Realizar Depósito
+
+Para adicionar saldo à conta:
+
+**Passos:**
+- Selecionar a opção `4`
+- Informar:
+  - Número da conta (ex: 1, 2, 3...)
+  - Valor do depósito (ex: 1000 ou 1000.50)
+
+**Observação:**
+- O valor deve ser numérico
+- Utilizar ponto (.) para casas decimais
+
+---
+
+### 4️⃣ Realizar Saque
+
+Para retirar dinheiro da conta:
+
+**Passos:**
+- Selecionar a opção `5`
+- Informar:
+  - Número da conta
+  - Valor do saque
+
+**Validação:**
+- O sistema verifica se há saldo suficiente
+
+**Resultado:**
+- Saque realizado ou mensagem de erro
+
+---
+
+### 5️⃣ Transferência entre Contas
+
+Permite enviar dinheiro de uma conta para outra.
+
+**Passos:**
+- Selecionar a opção `6`
+- Informar:
+  - Conta de origem
+  - Conta de destino
+  - Valor da transferência
+
+**Validação:**
+- Verifica saldo da conta de origem
+
+---
+
+### 6️⃣ Consultar Saldo
+
+Permite visualizar o saldo atual da conta.
+
+**Passos:**
+- Selecionar a opção `7`
+- Informar o número da conta
+
+**Resultado:**
+- Exibição do saldo atual
+
+---
+
+### ⚠️ Regras Importantes
+
+- O número da conta deve ser um valor inteiro (ex: 1, 2, 3)
+- Valores monetários devem usar ponto (.) como separador decimal
+- Não utilizar vírgula (,) para valores
+- O cliente deve ser cadastrado antes de criar contas
+
+---
+
+### 🔄 Encerramento
+
+- Para sair do sistema, selecionar a opção `0`
 
 ---
 
