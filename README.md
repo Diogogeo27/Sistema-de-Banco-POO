@@ -134,6 +134,6 @@ O sistema possui um **menu interativo no terminal**, permitindo:
 
 - Diogo Geovanni
 - Dayvson Henrique
-- Miguel
+- Miguel Reis
   
 Projeto desenvolvido para fins acadêmicos na disciplina de **Programação Orientada a Objetos**.
