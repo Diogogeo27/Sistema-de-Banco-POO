@@ -9,8 +9,8 @@ public class Banco {
         return clientes;
     }
 
-    public Cliente cadastrarCliente(String nome, String cpf) {
-        Cliente c = new Cliente(nome, cpf);
+    public Cliente cadastrarCliente(String nome, String cpf, String senha) {
+        Cliente c = new Cliente(nome, cpf, senha);
         clientes.add(c);
         return c;
     }
