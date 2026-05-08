@@ -1,6 +1,6 @@
 # 🏦 Sistema Bancário (POO em Java)
 
-Projeto desenvolvido para simular operações bancárias essenciais, aplicando conceitos fundamentais de **Programação Orientada a Objetos (POO)**.
+Projeto desenvolvido para simular operações bancárias essenciais, aplicando conceitos fundamentais de **Programação Orientada a Objetos (POO)**, incluindo controle de acesso por senha para operações sensíveis.
 
 ---
 
@@ -13,6 +13,7 @@ Projeto desenvolvido para simular operações bancárias essenciais, aplicando c
   - Polimorfismo  
   - Encapsulamento  
 - Garantir código organizado, modular e reutilizável  
+- Implementar validação de segurança nas operações  
 - Facilitar a expansão futura do sistema  
 
 ---
@@ -20,22 +21,50 @@ Projeto desenvolvido para simular operações bancárias essenciais, aplicando c
 ## ⚙️ Funcionalidades
 
 ### 👤 Gestão de Clientes
-- Cadastro de usuários
+- Cadastro de usuários com:
+  - Nome  
+  - CPF  
+  - Senha  
+
+---
 
 ### 💳 Contas Bancárias
 - Criação de Conta Corrente  
 - Criação de Conta Poupança  
+- Associação entre cliente e conta  
+
+---
 
 ### 💰 Operações Financeiras
-- Depósito de valores  
-- Saque com validação de saldo  
+
+#### Depósito
+- Inserção de valores na conta
+
+#### Saque 🔐
+- Validação de saldo  
+- Exige autenticação por senha  
+
+#### Transferência 🔐
 - Transferência entre contas  
+- Exige autenticação da conta de origem  
+- Validação de saldo  
+
+---
 
 ### 📊 Consultas
-- Verificação de saldo  
+- Verificação de saldo da conta  
+
+---
+
+### 🔐 Segurança Implementada
+- Cada cliente possui uma senha  
+- Operações sensíveis (saque e transferência) exigem autenticação  
+- A validação é feita através de método encapsulado na classe Cliente  
+
+---
 
 ### 📜 Histórico (conceito modelado)
-- Registro de transações (estrutura prevista para expansão)
+- Estrutura preparada para registro de transações futuras  
 
 ---
 
@@ -50,12 +79,18 @@ Projeto desenvolvido para simular operações bancárias essenciais, aplicando c
 
 O sistema foi modelado com as seguintes entidades principais:
 
+---
+
 ### 👤 Cliente
 Representa o usuário do sistema.
 
 **Atributos:**
 - nome  
 - cpf  
+- senha  
+
+**Métodos:**
+- autenticar(senha)  
 
 ---
 
@@ -79,7 +114,7 @@ Base para os tipos de conta, contendo a lógica principal.
 Especialização de Conta.
 
 - Sobrescreve o método `sacar()` (polimorfismo)  
-- Pode aplicar taxa no saque  
+- Aplica taxa no saque  
 
 ---
 
@@ -109,120 +144,77 @@ Responsável por gerenciar o sistema.
 
 ## ▶️ Execução do Sistema
 
-O sistema possui um menu interativo no terminal que permite ao usuário realizar operações bancárias de forma simples e sequencial.
-
-### 🧭 Fluxo Geral de Uso
-
-Ao iniciar o programa, o usuário deve seguir a ordem lógica abaixo para utilizar corretamente o sistema:
+O sistema possui um menu interativo no terminal que permite ao usuário realizar operações bancárias de forma sequencial.
 
 ---
 
+## 🧭 Fluxo Geral de Uso
+
 ### 1️⃣ Cadastrar Cliente
-
-Antes de qualquer operação, é necessário cadastrar um cliente.
-
-**Passos:**
-- Selecionar a opção `1`
+- Selecionar opção `1`  
 - Informar:
-  - Nome
-  - CPF
-
-**Resultado:**
-- Cliente é armazenado no sistema
+  - Nome  
+  - CPF  
+  - Senha  
 
 ---
 
 ### 2️⃣ Criar Conta Bancária
 
-Após cadastrar o cliente, é possível criar uma conta.
+#### Conta Corrente
+- Opção `2`  
+- Informar CPF  
 
-#### 💳 Conta Corrente
-- Selecionar a opção `2`
-- Informar o CPF do cliente já cadastrado
-
-#### 🏦 Conta Poupança
-- Selecionar a opção `3`
-- Informar o CPF do cliente já cadastrado
-
-**Resultado:**
-- Conta criada com número único
-- Associada ao cliente
+#### Conta Poupança
+- Opção `3`  
+- Informar CPF  
 
 ---
 
 ### 3️⃣ Realizar Depósito
-
-Para adicionar saldo à conta:
-
-**Passos:**
-- Selecionar a opção `4`
+- Opção `4`  
 - Informar:
-  - Número da conta (ex: 1, 2, 3...)
-  - Valor do depósito (ex: 1000 ou 1000.50)
-
-**Observação:**
-- O valor deve ser numérico
-- Utilizar ponto (.) para casas decimais
+  - Número da conta  
+  - Valor  
 
 ---
 
-### 4️⃣ Realizar Saque
-
-Para retirar dinheiro da conta:
-
-**Passos:**
-- Selecionar a opção `5`
+### 4️⃣ Realizar Saque 🔐
+- Opção `5`  
 - Informar:
-  - Número da conta
-  - Valor do saque
-
-**Validação:**
-- O sistema verifica se há saldo suficiente
-
-**Resultado:**
-- Saque realizado ou mensagem de erro
+  - Número da conta  
+  - Senha  
+  - Valor  
 
 ---
 
-### 5️⃣ Transferência entre Contas
-
-Permite enviar dinheiro de uma conta para outra.
-
-**Passos:**
-- Selecionar a opção `6`
+### 5️⃣ Transferência 🔐
+- Opção `6`  
 - Informar:
-  - Conta de origem
-  - Conta de destino
-  - Valor da transferência
-
-**Validação:**
-- Verifica saldo da conta de origem
+  - Conta origem  
+  - Conta destino  
+  - Senha da conta origem  
+  - Valor  
 
 ---
 
 ### 6️⃣ Consultar Saldo
-
-Permite visualizar o saldo atual da conta.
-
-**Passos:**
-- Selecionar a opção `7`
-- Informar o número da conta
-
-**Resultado:**
-- Exibição do saldo atual
+- Opção `7`  
+- Informar número da conta  
 
 ---
 
-### ⚠️ Regras Importantes
+## ⚠️ Regras Importantes
 
-- O número da conta deve ser um valor inteiro (ex: 1, 2, 3)
-- Valores monetários devem usar ponto (.) como separador decimal
-- Não utilizar vírgula (,) para valores
-- O cliente deve ser cadastrado antes de criar contas
+- O número da conta deve ser inteiro (ex: 1, 2, 3)  
+- Valores monetários usam ponto (.) como separador decimal  
+- Não utilizar vírgula (,)  
+- O cliente deve ser cadastrado antes de criar contas  
+- Operações sensíveis exigem senha válida  
 
 ---
 
-### 🔄 Encerramento
+## 🔄 Encerramento
 
 - Para sair do sistema, selecionar a opção `0`
 
@@ -231,16 +223,17 @@ Permite visualizar o saldo atual da conta.
 ## 🚀 Possíveis Melhorias Futuras
 
 - Implementar histórico completo de transações  
-- Adicionar autenticação de usuário  
+- Sistema de login antes de acessar o menu  
+- Bloqueio após múltiplas tentativas de senha  
 - Interface gráfica  
-- Persistência de dados (banco de dados)  
+- Persistência em banco de dados  
 
 ---
 
 ## 👨‍💻 Autor
 
-- Diogo Geovanni
-- Dayvson Henrique
-- Miguel Reis
-  
+- Diogo Geovanni  
+- Dayvson Henrique  
+- Miguel Reis  
+
 Projeto desenvolvido para fins acadêmicos na disciplina de **Programação Orientada a Objetos**.
