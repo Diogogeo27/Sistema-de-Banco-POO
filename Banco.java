@@ -5,7 +5,6 @@ public class Banco {
     private ArrayList<Conta> contas = new ArrayList<>();
     private int numeroConta = 1;
 
-    // ✅ MÉTODO QUE FALTAVA
     public ArrayList<Cliente> getClientes() {
         return clientes;
     }
