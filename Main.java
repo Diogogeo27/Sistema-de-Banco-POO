@@ -27,7 +27,10 @@ public class Main {
                     String nome = sc.nextLine();
                     System.out.print("CPF: ");
                     String cpf = sc.nextLine();
-                    banco.cadastrarCliente(nome, cpf);
+                    System.out.print("Senha: ");
+                    String senha = sc.nextLine();
+
+                    banco.cadastrarCliente(nome, cpf, senha);
                     System.out.println("Cliente cadastrado!");
                     break;
 
@@ -90,14 +93,25 @@ public class Main {
                     Conta contaSaq = banco.buscarConta(numSaq);
 
                     if (contaSaq != null) {
-                        System.out.print("Valor: ");
-                        double valor = sc.nextDouble();
+                        sc.nextLine();
+                        System.out.print("Senha: ");
+                        String senhaSaque = sc.nextLine();
 
-                        if (contaSaq.sacar(valor)) {
-                            System.out.println("Saque realizado!");
+                        if (contaSaq.getCliente().autenticar(senhaSaque)) {
+
+                            System.out.print("Valor: ");
+                            double valor = sc.nextDouble();
+
+                            if (contaSaq.sacar(valor)) {
+                                System.out.println("Saque realizado!");
+                            } else {
+                                System.out.println("Saldo insuficiente!");
+                            }
+
                         } else {
-                            System.out.println("Saldo insuficiente!");
+                            System.out.println("Senha incorreta!");
                         }
+
                     } else {
                         System.out.println("Conta não encontrada!");
                     }
@@ -113,14 +127,25 @@ public class Main {
                     Conta c2 = banco.buscarConta(destino);
 
                     if (c1 != null && c2 != null) {
-                        System.out.print("Valor: ");
-                        double valor = sc.nextDouble();
+                        sc.nextLine();
+                        System.out.print("Senha da conta origem: ");
+                        String senhaTransf = sc.nextLine();
 
-                        if (c1.transferir(c2, valor)) {
-                            System.out.println("Transferência realizada!");
+                        if (c1.getCliente().autenticar(senhaTransf)) {
+
+                            System.out.print("Valor: ");
+                            double valor = sc.nextDouble();
+
+                            if (c1.transferir(c2, valor)) {
+                                System.out.println("Transferência realizada!");
+                            } else {
+                                System.out.println("Saldo insuficiente!");
+                            }
+
                         } else {
-                            System.out.println("Erro na transferência!");
+                            System.out.println("Senha incorreta!");
                         }
+
                     } else {
                         System.out.println("Conta inválida!");
                     }
